@@ -1,0 +1,20 @@
+{% extends 'index.html' %}
+{% block content %}
+<h3 align="center">Дневник программиста</h3>
+<form action="/дневник_программиста" method="post" align="center">
+    <label for="form_data">Текст записи: </label>
+    <input type="text" id="form_data" name="data"><br>
+    <button type="submit">Записать</button>
+
+</form>
+<div>
+<button>
+    <a href="/">На главную</a>
+</button>
+</div>
+{% if form_data %}
+        <div class="result">
+            <p><strong>Содержание записи:</strong> {{ form_data['Содержание'] }}</p>
+        </div>
+        {% endif %}
+{% endblock %}
