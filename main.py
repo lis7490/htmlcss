@@ -42,6 +42,18 @@ def diary():
     return render_template("notes.html", notes=all_notes)
 
 
+@app.route("/удалить_запись/<int:note_id>", methods=['POST'])
+def delete_note(note_id):
+    # Находим запись по ID
+    note_to_delete = Notes.query.get_or_404(note_id)
+
+    # Удаляем запись
+    db.session.delete(note_to_delete)
+    db.session.commit()
+
+    return redirect(url_for('diary'))
+
+
 if __name__ == "__main__":
     with app.app_context():
         db.create_all()
